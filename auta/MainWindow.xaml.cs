@@ -70,7 +70,7 @@ namespace auta
             if (File.Exists(path))
             {
                 string readText = File.ReadAllText(path);
-                System.Xml.Serialization.XmlSerializer ser = new System.Xml.Serialization.XmlSerializer(typeof(List<Car>));
+                XmlSerializer ser = new XmlSerializer(typeof(List<Car>));
 
                 using (StringReader sr = new StringReader(readText))
                 {
@@ -85,7 +85,6 @@ namespace auta
         {
             CarGrid.Children.Clear();
             CarGrid.RowDefinitions.Clear();
-            CarGrid.RowDefinitions.Add(new RowDefinition());
 
             List<CarViewModel> carViewModels = CarsToViewModel(cars);
             int rowCounter = 1;
@@ -95,17 +94,29 @@ namespace auta
                 return;
             }
 
+            DisplayCarCell("Název modelu", "Cena bez DPH", "Cena s DPH", 0, Brushes.LightGray);
 
+            foreach (CarViewModel carViewModel in carViewModels)
+            {
+                DisplayCarCell(carViewModel.Model, string.Format("{0:N2}", carViewModel.Price), string.Format("{0:N2}", carViewModel.Vat), rowCounter, Brushes.White);
+
+                rowCounter++;
+            }
+        }
+
+        private void DisplayCarCell (string model, string price, string vat, int row, SolidColorBrush background)
+        {
+            CarGrid.RowDefinitions.Add(new RowDefinition());
             var headerBorder = new Border();
             headerBorder.BorderBrush = Brushes.Black;
             headerBorder.BorderThickness = new Thickness(1);
-            headerBorder.Background = Brushes.LightGray;
-            Grid.SetRow(headerBorder, 0);
+            headerBorder.Background = background;
+            Grid.SetRow(headerBorder, row);
             Grid.SetColumn(headerBorder, 0);
             CarGrid.Children.Add(headerBorder);
 
             Grid headerModelGrid = new Grid();
-            Grid.SetRow(headerModelGrid, 0);
+            Grid.SetRow(headerModelGrid, row);
             Grid.SetColumn(headerModelGrid, 0);
             headerModelGrid.Visibility = Visibility.Visible;
             CarGrid.Children.Add(headerModelGrid);
@@ -115,75 +126,27 @@ namespace auta
             headerModelGrid.RowDefinitions.Add(new RowDefinition());
 
             var headerModel = new Label();
-            headerModel.Content = "Název modelu";
+            headerModel.Content = model; 
             Grid.SetRow(headerModel, 0);
             Grid.SetColumn(headerModel, 0);
             Grid.SetRowSpan(headerModel, 1);
             headerModelGrid.Children.Add(headerModel);
 
             var headerPrice = new Label();
-            headerPrice.Content = "Cena bez DPH";
+            headerPrice.Content = price; 
             Grid.SetRow(headerPrice, 1);
             Grid.SetColumn(headerPrice, 0);
             headerPrice.HorizontalContentAlignment = HorizontalAlignment.Left;
             headerModelGrid.Children.Add(headerPrice);
 
-
-
             var headerVat = new Label();
-            headerVat.Content = "Cena s DPH";
+            headerVat.Content = vat; 
             Grid.SetRow(headerVat, 1);
             Grid.SetColumn(headerVat, 1);
             headerVat.HorizontalContentAlignment = HorizontalAlignment.Right;
             headerModelGrid.Children.Add(headerVat);
-
-            foreach (CarViewModel carViewModel in carViewModels)
-            {
-                CarGrid.RowDefinitions.Add(new RowDefinition());
-
-                Grid viewModelGrid = new Grid();
-                Grid.SetRow(viewModelGrid, rowCounter);
-                Grid.SetColumn(viewModelGrid, 0);
-                viewModelGrid.Visibility = Visibility.Visible;
-                CarGrid.Children.Add(viewModelGrid);
-                viewModelGrid.ColumnDefinitions.Add(new ColumnDefinition());
-                viewModelGrid.ColumnDefinitions.Add(new ColumnDefinition());
-                viewModelGrid.RowDefinitions.Add(new RowDefinition());
-                viewModelGrid.RowDefinitions.Add(new RowDefinition());
-
-                var carBorder = new Border();
-                carBorder.BorderBrush = Brushes.Black;
-                carBorder.BorderThickness = new Thickness(1);
-                Grid.SetRow(carBorder, rowCounter);
-                Grid.SetColumn(carBorder, 0);
-                CarGrid.Children.Add(carBorder);
-
-                var model = new Label();
-                model.Content = carViewModel.Model;
-                Grid.SetRow(model, 0);
-                Grid.SetColumn(model, 0);
-                Grid.SetRowSpan(model, 1);
-                viewModelGrid.Children.Add(model);
-
-                var price = new Label();
-                price.Content = string.Format("{0:N2}", carViewModel.Price);
-                Grid.SetRow(price, 1);
-                Grid.SetColumn(price, 0);
-                price.HorizontalContentAlignment = HorizontalAlignment.Left;
-                viewModelGrid.Children.Add(price);
-
-
-
-                var vat = new Label();
-                vat.Content = string.Format("{0:N2}", carViewModel.Vat);
-                Grid.SetRow(vat, 1);
-                Grid.SetColumn(vat, 1);
-                vat.HorizontalContentAlignment = HorizontalAlignment.Right;
-                viewModelGrid.Children.Add(vat);
-
-                rowCounter++;
-            }
         }
+
 
         private List<CarViewModel> CarsToViewModel(List<Car> cars) 
         {
