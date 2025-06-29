@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ArrayOfCar xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Car>
+    <Model>Škoda Oktávia</Model>
+    <SellDate />
+    <Price>500000</Price>
+    <Vat>20</Vat>
+  </Car>
+  <Car>
+    <Model>Škoda Felicia</Model>
+    <SellDate />
+    <Price>210000</Price>
+    <Vat>20</Vat>
+  </Car>
+  <Car>
+    <Model>Škoda Fabia</Model>
+    <SellDate />
+    <Price>350000</Price>
+    <Vat>20</Vat>
+  </Car>
+  <Car>
+    <Model>Škoda Oktávia</Model>
+    <SellDate />
+    <Price>500000</Price>
+    <Vat>20</Vat>
+  </Car>
+  <Car>
+    <Model>Škoda Oktávia</Model>
+    <SellDate />
+    <Price>500000</Price>
+    <Vat>20</Vat>
+  </Car>
+  <Car>
+    <Model>Škoda Fabia</Model>
+    <SellDate />
+    <Price>350000</Price>
+    <Vat>20</Vat>
+  </Car>
+  <Car>
+    <Model>Škoda Fabia</Model>
+    <SellDate />
+    <Price>350000</Price>
+    <Vat>20</Vat>
+  </Car>
+  <Car>
+    <Model>Škoda Forman</Model>
+    <SellDate />
+    <Price>100000</Price>
+    <Vat>19</Vat>
+  </Car>
+  <Car>
+    <Model>Škoda Favorit</Model>
+    <SellDate />
+    <Price>80000</Price>
+    <Vat>19</Vat>
+  </Car>
+  <Car>
+    <Model>Škoda Forman</Model>
+    <SellDate />
+    <Price>100000</Price>
+    <Vat>19</Vat>
+  </Car>
+  <Car>
+    <Model>Škoda Felicia</Model>
+    <SellDate />
+    <Price>210000</Price>
+    <Vat>19</Vat>
+  </Car>
+  <Car>
+    <Model>Škoda Felicia</Model>
+    <SellDate />
+    <Price>210000</Price>
+    <Vat>19</Vat>
+  </Car>
+  <Car>
+    <Model>Škoda Oktávia</Model>
+    <SellDate />
+    <Price>500000</Price>
+    <Vat>20</Vat>
+  </Car>
+</ArrayOfCar>
